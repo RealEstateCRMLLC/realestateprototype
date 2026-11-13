@@ -1,5 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: 'standalone',
+  // Mounted under /prototype/ on the production domain (nginx reverse
+  // proxy). basePath makes Next emit prefix-correct asset URLs and
+  // Link/router paths (same pattern as leadg/foreclosureworkflow). The
+  // /api rewrite below stays relative to the basePath and proxies to the
+  // prototype Express API on localhost:3012.
+  basePath: '/prototype',
   async rewrites() {
     return [
       {
